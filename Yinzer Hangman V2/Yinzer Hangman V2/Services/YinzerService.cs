@@ -11,11 +11,10 @@ namespace Yinzer_Hangman_V2.Services
     {
        private HangmanWord currentWord;
        private User user;
-       private ConsoleService ConsoleService;
+     
 
-        public YinzerService(ConsoleService consoleService)
+        public YinzerService()
         {
-            this.ConsoleService = consoleService;
             // other intialization logic 
         }
         public void StartGame()
@@ -29,13 +28,6 @@ namespace Yinzer_Hangman_V2.Services
 
             //initialize currentWord and user
 
-        }
-        public HangmanGameResult MakeGuess(string guess)
-        {
-            // Logic to handle user's guess
-            // Return HangmanGameResult indicating whether the game is won or lost
-        }
-        
-
+        }   
     }
 }

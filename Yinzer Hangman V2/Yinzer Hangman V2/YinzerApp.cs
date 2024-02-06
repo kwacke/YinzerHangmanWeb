@@ -10,7 +10,7 @@ namespace Yinzer_Hangman_V2
 {
     public class YinzerApp
     {
-        static void Run(string[] args)
+        public void Run()
         {
 
             Console.WriteLine("Hey yinz, gather 'round! We got ourselves a real n'at hangman game goin' on.");
@@ -34,7 +34,7 @@ namespace Yinzer_Hangman_V2
                 //I asked the internet how to do this, a ternary that checks if its a letter and the asterisk to replace the letters or leaves the space/character
                 string hidden = HideWord(answer);
 
-                DisplayWordHint(answer, hidden);
+                DisplayWordHint(answer, yinzWords[answer], hidden);
                 // makes sure that you haven't guessed the word or run out of guesses
                 while (hidden.Contains('*') && incorrect < 5)
                 {
@@ -42,7 +42,7 @@ namespace Yinzer_Hangman_V2
 
                   if (IsFullWordGuess(guess, answer))
                     {
-                        HandleFullWordGuess(answer, hidden);
+                        HandleFullWordGuess(answer, hidden, incorrect);
                         break;
                     }
                     // User chose not to play again, exit the screen.ea
@@ -74,7 +74,7 @@ namespace Yinzer_Hangman_V2
         // Method to call for drawing a hangman as you make incorrect guesses in the game
 
             // Originally had an array, I decided on the dictionary so that the key could hold the hints for the word
-        static Dictionary<string, string> IntializeWords()
+            static Dictionary<string, string> IntializeWords()
             {
 
                 Dictionary<string, string> yinzWords = new Dictionary<string, string>
@@ -168,13 +168,10 @@ namespace Yinzer_Hangman_V2
             {
                 return new string(word.Select(c => Char.IsLetter(c) ? '*' : c == ' ' || c == '\'' || c == '-' || c == ',' || c == '?' || c == '.' ? c : ' ').ToArray());
             }
-            static void DisplayWordHint(string word, string hidden)
+            static void DisplayWordHint(string word, string hidden, string hint)
             {
-                //Console.WriteLine($"Your word is {hidden}!");
-                Console.WriteLine($"Hint: {wordDictionary[word]}: {hidden}");
-                Console.WriteLine();
+                Console.WriteLine($"Hint: {hint}: {hidden}");
                 Console.WriteLine($"The word is {word.Length} letters");
-                Console.WriteLine();
             }
             static string GetUserGuess(string answer, string hidden)
             {
@@ -190,11 +187,11 @@ namespace Yinzer_Hangman_V2
             {
                 return guess.Length > 1 && guess.Length == answer.Length;
             }
-            static void HandleFullWordGuess(string answer, string hidden)
+            static void HandleFullWordGuess(string answer, string hidden, int incorrect)
             {
                 string guess = GetUserGuess(answer, hidden);
-                string filteredGuess = filteredGuess(guess);
-                string filteredAnswer = filteredAnswer(answer);
+                string filteredGuess = FilterGuess(guess);
+                string filteredAnswer = FilterAnswer(answer);
 
                 if (filteredGuess == filteredAnswer)
                 {
