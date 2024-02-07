@@ -10,6 +10,9 @@ namespace Yinzer_Hangman_V2
 {
     public class YinzerApp
     {
+        WordServices wordServices = new WordServices();
+        User user = new User();
+
         public void Run()
         {
 
@@ -20,47 +23,41 @@ namespace Yinzer_Hangman_V2
             Console.WriteLine("Yinz only got five chances to crack the code.Grab yer Terrible Towel, sit back, and let's see if yinz can unravel the mystery.");
             Console.WriteLine();
 
-            Dictionary<string, string> yinzWords = IntializeWords();
-
-            int incorrect = 0;
-            int correct = 0;
-            bool hasLetter = false;
-            string playAgain;
-            string answer = "";
+            Dictionary<string, string> yinzWords = wordServices.IntializeWords();
 
             do
             {
-                answer = GetRandomWord(yinzWords);
+                user.Answer = GetRandomWord(yinzWords);
                 //I asked the internet how to do this, a ternary that checks if its a letter and the asterisk to replace the letters or leaves the space/character
-                string hidden = HideWord(answer);
+                string hidden = HideWord(user.Answer);
 
-                DisplayWordHint(answer, yinzWords[answer], hidden);
+                DisplayWordHint(user.Answer, yinzWords[user.Answer], hidden);
                 // makes sure that you haven't guessed the word or run out of guesses
-                while (hidden.Contains('*') && incorrect < 5)
+                while (hidden.Contains('*') && user.Incorrect < 5)
                 {
-                    string guess = GetUserGuess(answer, hidden);
+                    string guess = GetUserGuess(user.Answer, hidden);
 
-                  if (IsFullWordGuess(guess, answer))
+                  if (IsFullWordGuess(guess, user.Answer))
                     {
-                        HandleFullWordGuess(answer, hidden, incorrect);
+                        HandleFullWordGuess(user.Answer, hidden, user.Incorrect, guess);
                         break;
                     }
                     // User chose not to play again, exit the screen.ea
                     else if (IsSingleLetterGuess(guess))
                     {
-                        HandleSingleLetterGuess(answer, ref hidden, ref hasLetter, ref incorrect);
+                        HandleSingleLetterGuess(user.Answer,hidden, user.HasLetter, user.Incorrect, guess);
                     }
 
                 }
-                DisplayGameOutcome(hidden, incorrect);
-                playAgain = AskToPlayAgain();
+                DisplayGameOutcome(hidden, user.Incorrect);
+                user.PlayAgain = AskToPlayAgain();
 
                 // this loop condition is needed to start the game over again after selecting yes to play again
-                if (playAgain.ToLower() == "y" || playAgain.ToLower() == "yes")
+                if (user.PlayAgain.ToLower() == "y" || user.PlayAgain.ToLower() == "yes")
                 {
-                    ResetGameVariables(ref correct, ref incorrect, ref hasLetter, ref answer);
+                    ResetGameVariables(user.Correct, user.Incorrect, user.HasLetter, user.Answer);
                 }
-                else if (playAgain.ToLower() == "n" || playAgain.ToLower() == "no")
+                else if (user.PlayAgain.ToLower() == "n" || user.PlayAgain.ToLower() == "no")
                 {
                     Console.WriteLine("Thanks for playng, see yinz next time!");
                     break;
@@ -70,92 +67,10 @@ namespace Yinzer_Hangman_V2
                     HandleInvalidPlayAgainInput();
                 }
 
-            } while (playAgain.ToLower()== "y" || playAgain.ToLower()=="yes");
+            } while (user.PlayAgain.ToLower()== "y" || user.PlayAgain.ToLower()=="yes");
         // Method to call for drawing a hangman as you make incorrect guesses in the game
 
-            // Originally had an array, I decided on the dictionary so that the key could hold the hints for the word
-            static Dictionary<string, string> IntializeWords()
-            {
-
-                Dictionary<string, string> yinzWords = new Dictionary<string, string>
-            {
-            {"Yinz", "Pittsburghese pronoun"},
-            {"Clahdy", "Weather-related term"},
-            {"Jagoff", "Pittsburgh insult"},
-            {"Dahntahn", "Downtown"},
-            {"Grahnd bees", "Yellow jacket bees in the ground"},
-            {"Rahn-da-baht", "Song by the group yes or slang for a long way of getting to your destination"},
-            {"Slippy", "Icy"},
-            {"Gumband", "Rubber band"},
-            {"Seent", "Seen it"},
-            {"Cousint", "Cousin"},
-            {"Friggin", "Vulgar slang"},
-            {"Crick", "Small stream or creek"},
-            {"Irn", "Short for Iron City Beer"},
-            {"Worsh", "Wash"},
-            {"Sweeper", "Vacuum cleaner"},
-            {"Spickett", "Outdoor water faucet"},
-            {"Prolly", "Probably"},
-            {"Zak same", "Exactly the same"},
-            {"Lahsy", "Lousy"},
-            {"Jagger bush", "Thorny bush or plant"},
-            {"Up air", "Up there"},
-            {"Da-Boat-a-ya", "The both of you"},
-            {"Nebby", "Nosy"},
-            {"N'at", "And that"},
-            {"Gutchies", "Underwear"},
-            {"Buggy", "Shopping cart"},
-            {"Jumbo", "Bologna"},
-            {"Chipped-Chopped ham", "Isaly's was famous for this!"},
-            {"Red Up", "Clean up"},
-            {"Jeet Jet?", "Did you eat yet?"},
-            {"Dippy Eggs", "Sunny-side-up eggs"},
-            {"Pop", "Soda"},
-            {"Canipshun", "Conniption"},
-            {"Sammitches", "Sandwiches"},
-            {"Ahnno-dat", "I don't know that"},
-            {"A whole nother", "A whole other"},
-            { "Airyago", "There you go"},
-            {"Apost tu", "Supposed too"},
-            {"Back'air", "Back there"},
-            {"Bo fuss", "Both of us"},
-            {"Bowchyins", "Both of you"},
-            {"Buy Sam a drink and get his dog one too!", "Mike Lang Slang"},
-            {"Can a corn", "Easy catch in baseball"},
-            {"Choobinuptoo", "What have you been up to?"},
-            {"Cole-daht-dare", "It's cold outside"},
-            {"Come mere", "Come here"},
-            {"Dahn nair", "Down there"},
-            {"Daht'et", "That it"},
-            {"Don't go err wit me", "Don't argue with me"},
-            {"Dooder Jobs", "Do their jobs"},
-            {"Elvis has left the building", "The show is over"},
-            {"Hafta", "Have to"},
-            {"Hauscome", "How has it come"},
-            {"Hay Bir Here", "Hey beer here"},
-            {"How's come?", "Why is that?"},
-            {"Ize", "I am"},
-            {"Ja Wanna", "Do you want to"},
-            {"Jano?", "Do you know?"},
-            {"Jeez-o-man", "Expression of surprise"},
-            {"Kennywood's Open", "The zipper on your pants is open"},
-            {"Lassnite", "Last night"},
-            {"Like iss", "Like this"},
-            {"Like 'at", "Like that"},
-            {"Nuh-uh!!", "No"},
-            {"Oh call Arnold Slick from Turtle Crick!", "Expression of surprise"},
-            {"Oh mah gersh!", "Oh my gosh!"},
-            {"Ovaderr", "Over there"},
-            {"Same difference", "No difference"},
-            {"Scratch my back with a hacksaw!", "Mike Lang Slang"},
-            {"Sick'n tard", "Sick and tired"},
-            {"Sposda", "Supposed to"},
-            {"bungals", "Slang for Cincinatti's football team"},
-            {"brahns", "Brown shoes"},
-            {"Ya Gatta Regatta!", "You have to attend the regatta"}
-            };
-                return yinzWords;
-            }
+          
 
             static string GetRandomWord(Dictionary<string, string> wordDictionary)
             {
@@ -187,9 +102,8 @@ namespace Yinzer_Hangman_V2
             {
                 return guess.Length > 1 && guess.Length == answer.Length;
             }
-            static void HandleFullWordGuess(string answer, string hidden, int incorrect)
+            static void HandleFullWordGuess(string answer, string hidden, int incorrect, string guess)
             {
-                string guess = GetUserGuess(answer, hidden);
                 string filteredGuess = FilterGuess(guess);
                 string filteredAnswer = FilterAnswer(answer);
 
@@ -217,9 +131,9 @@ namespace Yinzer_Hangman_V2
             {
                 return new string(answer.ToLower().Where(c => Char.IsLetter(c) || c == ' ' || c == '\\' || c == '-' || c == ',' || c == '?' || c == '.' || c == '!').ToArray());
             }
-            static void HandleSingleLetterGuess(string answer, ref string hidden, ref bool hasLetter, ref int incorrect)
+            static void HandleSingleLetterGuess(string answer, string hidden, bool hasLetter, int incorrect, string guess)
             {
-                string guess = GetUserGuess(answer, hidden);
+                //guess = GetUserGuess(answer, hidden);
 
                 //if they guess incorrectly respond and increment the incorrect variable
                 if (!answer.ToLower().Contains(char.ToLower(guess[0])))
@@ -277,9 +191,6 @@ namespace Yinzer_Hangman_V2
                         hidden = new string(reveal);
                         Console.WriteLine($"{hidden}!");
                     }
-                    //correct = hidden.Count(c => c != '*' && char.IsLetter(c));
-
-                    //if (correct == answer.Where(char.IsLetter).Distinct().Count())
                     if (!hidden.Contains("*"))
                     {
                         Console.WriteLine();
@@ -347,6 +258,7 @@ namespace Yinzer_Hangman_V2
                 Console.WriteLine("Game over, ya Jag.");
                 Console.WriteLine();
             }
+           
         }
         static string AskToPlayAgain()
         {
@@ -364,7 +276,7 @@ namespace Yinzer_Hangman_V2
             Console.WriteLine();
             AskToPlayAgain();
         }
-        static void ResetGameVariables(ref int correct, ref int incorrect, ref bool hasLetter, ref string answer)
+        static void ResetGameVariables(int correct,int incorrect, bool hasLetter, string answer)
         {
             correct = 0;
             incorrect = 0;

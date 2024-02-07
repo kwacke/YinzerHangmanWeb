@@ -11,23 +11,10 @@ namespace Yinzer_Hangman_V2.Services
     {
        private HangmanWord currentWord;
        private User user;
-     
+
 
         public YinzerService()
         {
-            // other intialization logic 
-        }
-        public void StartGame()
-        {
-            //Logic to start a new game
-            int incorrect = 0;
-            int correct = 0;
-            bool hasLetter = false;
-            string playAgain;
-            string answer = "";
-
-            //initialize currentWord and user
-
-        }   
+        }     
     }
 }
