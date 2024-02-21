@@ -90,7 +90,8 @@ export function createStore() {
                 const entries = Object.entries(state.wordDictionary);
                 const randomIndex = Math.floor(Math.random() * entries.length);
                 const selectedEntry = entries[randomIndex];
-                return selectedEntry[0]; // Return the key (the word)
+                state.word = selectedEntry[0]; // Return the key (the word)
+                state.hint = selectedEntry[1]; // Returns the value (aka the hint)
             },
             ADD_GUESS(state, guess) {
                 state.guesses.push(guess);
