@@ -1,0 +1,28 @@
+C:\Users\Student\workspace\Alumni\Code - February\DataStructures020624\DataStructureCCB\DataStructureCCB\bin\Debug\net6.0\DataStructureCCB.exe
+C:\Users\Student\workspace\Alumni\Code - February\DataStructures020624\DataStructureCCB\DataStructureCCB\bin\Debug\net6.0\DataStructureCCB.deps.json
+C:\Users\Student\workspace\Alumni\Code - February\DataStructures020624\DataStructureCCB\DataStructureCCB\bin\Debug\net6.0\DataStructureCCB.runtimeconfig.json
+C:\Users\Student\workspace\Alumni\Code - February\DataStructures020624\DataStructureCCB\DataStructureCCB\bin\Debug\net6.0\DataStructureCCB.dll
+C:\Users\Student\workspace\Alumni\Code - February\DataStructures020624\DataStructureCCB\DataStructureCCB\bin\Debug\net6.0\DataStructureCCB.pdb
+C:\Users\Student\workspace\Alumni\Code - February\DataStructures020624\DataStructureCCB\DataStructureCCB\obj\Debug\net6.0\DataStructureCCB.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Student\workspace\Alumni\Code - February\DataStructures020624\DataStructureCCB\DataStructureCCB\obj\Debug\net6.0\DataStructureCCB.AssemblyInfoInputs.cache
+C:\Users\Student\workspace\Alumni\Code - February\DataStructures020624\DataStructureCCB\DataStructureCCB\obj\Debug\net6.0\DataStructureCCB.AssemblyInfo.cs
+C:\Users\Student\workspace\Alumni\Code - February\DataStructures020624\DataStructureCCB\DataStructureCCB\obj\Debug\net6.0\DataStructureCCB.csproj.CoreCompileInputs.cache
+C:\Users\Student\workspace\Alumni\Code - February\DataStructures020624\DataStructureCCB\DataStructureCCB\obj\Debug\net6.0\DataStructureCCB.dll
+C:\Users\Student\workspace\Alumni\Code - February\DataStructures020624\DataStructureCCB\DataStructureCCB\obj\Debug\net6.0\refint\DataStructureCCB.dll
+C:\Users\Student\workspace\Alumni\Code - February\DataStructures020624\DataStructureCCB\DataStructureCCB\obj\Debug\net6.0\DataStructureCCB.pdb
+C:\Users\Student\workspace\Alumni\Code - February\DataStructures020624\DataStructureCCB\DataStructureCCB\obj\Debug\net6.0\DataStructureCCB.genruntimeconfig.cache
+C:\Users\Student\workspace\Alumni\Code - February\DataStructures020624\DataStructureCCB\DataStructureCCB\obj\Debug\net6.0\ref\DataStructureCCB.dll
+C:\Users\Wacker\source\repos\February 24'\DataStructureCCB\DataStructureCCB\bin\Debug\net6.0\DataStructureCCB.exe
+C:\Users\Wacker\source\repos\February 24'\DataStructureCCB\DataStructureCCB\bin\Debug\net6.0\DataStructureCCB.deps.json
+C:\Users\Wacker\source\repos\February 24'\DataStructureCCB\DataStructureCCB\bin\Debug\net6.0\DataStructureCCB.runtimeconfig.json
+C:\Users\Wacker\source\repos\February 24'\DataStructureCCB\DataStructureCCB\bin\Debug\net6.0\DataStructureCCB.dll
+C:\Users\Wacker\source\repos\February 24'\DataStructureCCB\DataStructureCCB\bin\Debug\net6.0\DataStructureCCB.pdb
+C:\Users\Wacker\source\repos\February 24'\DataStructureCCB\DataStructureCCB\obj\Debug\net6.0\DataStructureCCB.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Wacker\source\repos\February 24'\DataStructureCCB\DataStructureCCB\obj\Debug\net6.0\DataStructureCCB.AssemblyInfoInputs.cache
+C:\Users\Wacker\source\repos\February 24'\DataStructureCCB\DataStructureCCB\obj\Debug\net6.0\DataStructureCCB.AssemblyInfo.cs
+C:\Users\Wacker\source\repos\February 24'\DataStructureCCB\DataStructureCCB\obj\Debug\net6.0\DataStructureCCB.csproj.CoreCompileInputs.cache
+C:\Users\Wacker\source\repos\February 24'\DataStructureCCB\DataStructureCCB\obj\Debug\net6.0\DataStructureCCB.dll
+C:\Users\Wacker\source\repos\February 24'\DataStructureCCB\DataStructureCCB\obj\Debug\net6.0\refint\DataStructureCCB.dll
+C:\Users\Wacker\source\repos\February 24'\DataStructureCCB\DataStructureCCB\obj\Debug\net6.0\DataStructureCCB.pdb
+C:\Users\Wacker\source\repos\February 24'\DataStructureCCB\DataStructureCCB\obj\Debug\net6.0\DataStructureCCB.genruntimeconfig.cache
+C:\Users\Wacker\source\repos\February 24'\DataStructureCCB\DataStructureCCB\obj\Debug\net6.0\ref\DataStructureCCB.dll
