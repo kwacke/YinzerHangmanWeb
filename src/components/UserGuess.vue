@@ -28,7 +28,7 @@ export default {
             this.handleFullWordGuess();
           }
         }
-        this.guess = '';
+        return this.guess;
       }
     },
     isSingleLetterGuess(guess) {
@@ -50,14 +50,14 @@ export default {
         }
       }
     },
-    handleSingleLetterGuess() {
-      const guess = this.guess.toLowerCase();
-      const answer = this.answer.toLowerCase();
+    handleSingleLetterGuess(guess, answer) {
+      guess = this.guess.toLowerCase();
+      answer = this.answer.toLowerCase();
 
       console.log('Guess',guess)
       console.log('Answer', answer)
       console.log('Hidden', this.Hidden)
-      
+
       if (!answer.includes(guess)) {
         // Handle incorrect guess logic
         this.incorrect++;
