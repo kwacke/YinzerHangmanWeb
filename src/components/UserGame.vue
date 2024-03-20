@@ -28,12 +28,12 @@ export default {
       img: './YinzerHangman.jpg',
       hidden: '',
       incorrect: 0,
-      maxIncorrect: 5, //Max number of incorrect guesses
+      maxIncorrect: 5, // Max number of incorrect guesses
     };
   },
   created() {
     this.$store.commit("GET_RANDOM_WORD");
-    this.currentWord = this.$store.state.word;
+    this.correctWord = this.$store.state.word;
     this.hint = this.$store.state.hint;
     // Initialize hidden with underscores
     this.hideWord();
@@ -41,10 +41,31 @@ export default {
   methods: {
     hideWord() {
       // Mask the characters of the currentWord with underscores
-      this.hidden = this.currentWord.replace(/\w/g, '_').trim();
+      this.hidden = this.correctWord.replace(/\w/g, '_').trim();
     },
-    handleGuess() {
-      // This method will be called by the UserGuess component when a guess is submitted.
+    handleGuess(guess) {
+      const answer = this.correctWord.toLowerCase();
+
+      if (answer.includes(guess)) {
+        // Update hidden word with correctly guessed letters
+        const newHidden = this.hidden.split('').map((char, index) => {
+          if (answer[index] === guess) {
+            return guess;
+          } else {
+            return char;
+          }
+        }).join('');
+
+        this.updateHidden(newHidden);
+      } else {
+        // Handle incorrect guess logic
+        this.incorrect++;
+        if (this.incorrect === this.maxIncorrect) {
+          console.log('Game over');
+          this.askToPlayAgain();
+        }
+      }
+      this.displayGameOutcome();
     },
     displayGameOutcome() {
       if (this.hidden.includes('_') && this.incorrect === this.maxIncorrect) {
@@ -78,10 +99,10 @@ export default {
       this.hint = this.$store.state.hint;
       this.hideWord();
     },
-    updateHidden(newHidden){
+    updateHidden(newHidden) {
       this.hidden = newHidden;
     },
-    gameWon(){
+    gameWon() {
       console.log('Congratulations! You won the game!')
       this.resetGameVariables();
       this.askToPlayAgain();
@@ -89,6 +110,7 @@ export default {
   }
 };
 </script>
+
 <style>
 .container {
   display: flex;

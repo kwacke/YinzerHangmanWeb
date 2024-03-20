@@ -8,7 +8,8 @@
       </ul>
     </nav>
     <div>
-      <user-game />
+      <user-game :correctWord="correctWord" :hidden="hidden" :maxIncorrect="maxIncorrect" />
+      
     </div>
   </div>
 </template>
@@ -19,7 +20,7 @@ import UserGame from './components/UserGame.vue';
 export default {
   name: 'App',
   components: {
-    UserGame
+    UserGame,
   }
 };
 </script>

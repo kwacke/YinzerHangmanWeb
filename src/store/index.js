@@ -79,7 +79,8 @@ export function createStore() {
             "Ya Gatta Regatta!": "You have to attend the regatta",
             "Renegade": "Unofficial Pittsburgh Steelers anthem" 
         },           
-            word: '',
+            correctWord: '',
+            hidden: '',
             guesses: [],
             incorrectGuesses: 0,
             maxIncorrectGuesses: 5,
@@ -90,7 +91,8 @@ export function createStore() {
                 const entries = Object.entries(state.wordDictionary);
                 const randomIndex = Math.floor(Math.random() * entries.length);
                 const selectedEntry = entries[randomIndex];
-                state.word = selectedEntry[0]; // Return the key (the word)
+                state.correctWord = selectedEntry[0];
+                state.hidden = selectedEntry[0].replace(/\w/g, '_').trim(); // Initialize hidden with underscores
                 state.hint = selectedEntry[1]; // Returns the value (aka the hint)
             },
             ADD_GUESS(state, guess) {
